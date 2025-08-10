@@ -7,9 +7,9 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FinSight - AI-Powered Financial Analysis",
+  title: "Rakary.com - Marketing Agency for Influencers & Brands",
   description:
-    "Upload, summarize, and visualize company filings instantly with our AI-powered platform. Get insights that would take hours in just minutes.",
+    "Grow your influence and amplify your brand with Rakary.com. We help influencers and businesses generate leads, create standout content, and achieve digital success through expert marketing strategies.",
 };
 
 export default function RootLayout({

@@ -11,13 +11,13 @@ export function FeaturesSectionDemo() {
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
-        className="text-4xl md:text-5xl font-extrabold text-center mb-10 bg-gradient-to-b from-black to-neutral-600 dark:from-white dark:to-neutral-400 text-transparent bg-clip-text"
+        className="text-4xl md:text-5xl font-extrabold text-center mb-12 bg-gradient-to-b from-black to-neutral-600 dark:from-white dark:to-neutral-400 text-transparent bg-clip-text"
       >
-        Frequently{" "}
+        Wide range of{" "}
         <span className="font-extrabold bg-gradient-to-t from-blue-500 to-gray-200 bg-clip-text text-transparent dark:from-blue-400 dark:to-gray-300">
-          Asked{" "}
+          Features{" "}
         </span>
-        Questions
+        with Provide.
       </motion.h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-2 max-w-7xl mx-auto">
         {grid.map((feature) => (
