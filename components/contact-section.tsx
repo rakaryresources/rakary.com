@@ -21,31 +21,49 @@ export function ContactSection() {
   // Sample testimonials data
   const testimonials: Testimonial[] = [
     {
-      company: "TechCorp",
-      logo: "TC",
+      company: "InfluencePro",
+      logo: "IP",
       testimonial:
-        "transformed our annual reporting process - we now visualize complex financial data in minutes instead of weeks, making stakeholder presentations more engaging and data insights crystal clear.",
-      author: "Sarah Johnson",
-      position: "CFO, TechCorp",
-      gradient: "from-blue-500 to-purple-600",
+        "rakary.com helped me grow my Instagram following by 300% in just 2 months! Their content ideas and lead generation tools are a game changer for any influencer.",
+      author: "Ava Patel",
+      position: "Lifestyle Influencer, InfluencePro",
+      gradient: "from-pink-500 to-yellow-500",
     },
     {
-      company: "FinanceFlow",
-      logo: "FF",
+      company: "BrandBoosters",
+      logo: "BB",
       testimonial:
-        "revolutionized how we handle quarterly reports. Our board meetings are now 50% shorter with crystal-clear visualizations that tell the story behind the numbers.",
-      author: "Michael Chen",
-      position: "Director of Finance, FinanceFlow",
-      gradient: "from-green-500 to-teal-600",
+        "With rakary.com, I started getting brand deals every week. The platform makes it so easy to create engaging content and connect with new clients.",
+      author: "Liam Nguyen",
+      position: "Content Creator, BrandBoosters",
+      gradient: "from-blue-500 to-green-500",
     },
     {
-      company: "DataDriven Inc",
-      logo: "DD",
+      company: "ViralMakers",
+      logo: "VM",
       testimonial:
-        "helped us turn overwhelming financial spreadsheets into beautiful, interactive dashboards. Our investors now understand our performance metrics instantly.",
-      author: "Emma Rodriguez",
-      position: "VP of Operations, DataDriven Inc",
-      gradient: "from-orange-500 to-red-600",
+        "I never thought lead generation could be this simple. rakary.com’s tools helped me turn my followers into real business leads!",
+      author: "Sophia Kim",
+      position: "Influencer, ViralMakers",
+      gradient: "from-purple-500 to-indigo-500",
+    },
+    {
+      company: "ContentWave",
+      logo: "CW",
+      testimonial:
+        "rakary.com gave me the confidence to pitch to bigger brands. My content is more professional and my audience is more engaged than ever!",
+      author: "Noah Smith",
+      position: "Travel Blogger, ContentWave",
+      gradient: "from-orange-400 to-pink-600",
+    },
+    {
+      company: "LeadGenX",
+      logo: "LG",
+      testimonial:
+        "Thanks to rakary.com, I doubled my email list and started earning from my content. Highly recommended for any influencer serious about growth.",
+      author: "Maya Garcia",
+      position: "Fitness Influencer, LeadGenX",
+      gradient: "from-green-400 to-blue-600",
     },
   ];
 
@@ -74,15 +92,19 @@ export function ContactSection() {
         {/* Glowing background for testimonial with rising animation */}
         <div className="absolute right-0 bottom-0 w-1/2 h-1/2 pointer-events-none z-0">
           <div
-            className={`absolute right-0 bottom-0 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] bg-blue-200 dark:bg-blue-400 blur-3xl rounded-full transition-all duration-[3500ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${glowVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}`}
+            className={`absolute right-0 bottom-0 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] bg-gray-400 dark:bg-gray-400 blur-3xl rounded-full transition-all duration-[3500ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
+              glowVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-20 opacity-0"
+            }`}
             style={{ willChange: "transform, opacity" }}
           />
         </div>
 
         {/* Main heading at the top */}
         <div className="w-full max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl flex justify-center relative z-10 mb-8 sm:mb-12 md:mb-16">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-blue-600 via-blue-400 to-black dark:from-blue-300 dark:via-blue-200 dark:to-white bg-clip-text text-transparent text-center">
-            Get in touch
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-gray-400 via-gray-600 to-black/70 dark:from-gray-400 dark:via-gray-200 dark:to-white bg-clip-text text-transparent text-center">
+            Book Ser
           </h1>
         </div>
 
@@ -191,9 +213,6 @@ export function ContactSection() {
               </div>
               {/* Testimonial text */}
               <blockquote className="text-sm sm:text-base md:text-lg text-black/80 dark:text-white/80 font-light mb-4 sm:mb-6 transition-all duration-300 relative z-10">
-                <span className="text-black dark:text-white font-semibold">
-                  DeepFundz
-                </span>{" "}
                 <span className="text-neutral-600 dark:text-white/60">
                   {currentData?.testimonial || ""}
                 </span>
@@ -201,7 +220,9 @@ export function ContactSection() {
               {/* Company logo placeholder */}
               <div className="mt-auto flex items-center gap-2 relative z-10">
                 <div
-                  className={`w-8 h-8 bg-gradient-to-br ${currentData?.gradient || "from-blue-500 to-purple-600"} rounded-lg flex items-center justify-center transition-all duration-300`}
+                  className={`w-8 h-8 bg-gradient-to-br ${
+                    currentData?.gradient || "from-blue-500 to-purple-600"
+                  } rounded-lg flex items-center justify-center transition-all duration-300`}
                 >
                   <span className="text-black dark:text-white font-bold text-sm">
                     {currentData?.logo || "C"}
