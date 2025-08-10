@@ -118,7 +118,7 @@ export function FAQ() {
 
       {/* FAQ List */}
       <motion.div
-        className="bg-white dark:bg-[#0d0d0d] p-6 mt-8 rounded-[25px] shadow-lg space-y-4"
+        className="bg-white dark:bg-black p-6 mt-8 rounded-[25px] shadow-lg space-y-4"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -149,7 +149,7 @@ export function FAQ() {
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <p className="mt-4 text-gray-700 dark:text-gray-300 text-sm whitespace-pre-line">
+              <p className="mt-4 text-gray-700 dark:text-gray-300 text-md whitespace-pre-line">
                 {faq.answer}
               </p>
             </motion.div>
