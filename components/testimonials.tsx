@@ -92,7 +92,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16 pt-36">
+    <section className="max-w-6xl mx-auto px-6 py-16 pt-36 bg-white dark:bg-black">
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -120,9 +120,11 @@ export default function Testimonials() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.05 }}
-            className="bg-neutral-900/40 border border-neutral-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="bg-white dark:bg-neutral-900/40 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
-            <p className="text-lg text-neutral-200 mb-6">“{t.quote}”</p>
+            <p className="text-lg text-neutral-700 dark:text-neutral-200 mb-6">
+              “{t.quote}”
+            </p>
             <div className="flex items-center gap-4">
               <img
                 src={t.image}
@@ -130,8 +132,12 @@ export default function Testimonials() {
                 className="w-12 h-12 rounded-full object-cover border border-neutral-700"
               />
               <div>
-                <p className="font-semibold text-neutral-100">{t.name}</p>
-                <p className="text-sm text-neutral-500">{t.role}</p>
+                <p className="font-semibold text-neutral-900 dark:text-neutral-100">
+                  {t.name}
+                </p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                  {t.role}
+                </p>
               </div>
             </div>
           </motion.div>

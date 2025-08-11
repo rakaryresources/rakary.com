@@ -105,7 +105,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-black text-white px-4 py-12 border-t border-neutral-800">
+    <footer className="bg-white dark:bg-black text-black dark:text-white px-4 py-12 border-t border-neutral-800">
       <div className="max-w-5xl mx-auto flex flex-col items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center mb-4">

@@ -102,16 +102,31 @@ export function ContactSection() {
         </div>
 
         {/* Main heading at the top */}
-        <div className="w-full max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl flex justify-center relative z-10 mb-8 sm:mb-12 md:mb-16">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-gray-400 via-gray-600 to-black/70 dark:from-gray-400 dark:via-gray-200 dark:to-white bg-clip-text text-transparent text-center">
-            Book Ser
+        <div className="w-full max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl flex flex-col items-center relative z-10 mb-8 sm:mb-12 md:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-gray-400 via-gray-600 to-black/70 dark:from-gray-400 dark:via-gray-200 dark:to-white bg-clip-text text-transparent text-center mb-4 sm:mb-6">
+            Contact Us
           </h1>
+          <p className="text-base sm:text-lg md:text-xl text-center text-black/70 dark:text-white/70 max-w-2xl mx-auto leading-relaxed">
+            Have questions? Ready to take your marketing efforts to the next
+            level? We're here to help! Whether you want to learn more about our
+            services, book a demo, or discuss your specific needs, our team is
+            just a message away.
+          </p>
         </div>
 
         {/* Two columns side by side */}
         <div className="w-full max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10">
           {/* Left: Contact Form */}
           <div className="flex flex-col justify-center">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-semibold text-black dark:text-white mb-2">
+                Get In Touch
+              </h2>
+              <p className="text-sm sm:text-base text-black/70 dark:text-white/70">
+                Fill out the form below, and one of our team members will get
+                back to you as soon as possible.
+              </p>
+            </div>
             <form className="flex flex-col gap-4 sm:gap-5 md:gap-6">
               <div className="flex flex-col gap-2">
                 <label
@@ -139,6 +154,35 @@ export function ContactSection() {
                   placeholder="e.g. example@gmail.com"
                   className="bg-neutral-100 dark:bg-[#18181b] border border-neutral-300 dark:border-neutral-700 text-black dark:text-white placeholder:text-neutral-400 text-sm sm:text-base h-10 sm:h-11"
                 />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="phone"
+                  className="text-xs sm:text-sm font-medium text-black dark:text-white"
+                >
+                  Phone Number (optional)
+                </label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="e.g. +1 (555) 123-4567"
+                  className="bg-neutral-100 dark:bg-[#18181b] border border-neutral-300 dark:border-neutral-700 text-black dark:text-white placeholder:text-neutral-400 text-sm sm:text-base h-10 sm:h-11"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="contact-method"
+                  className="text-xs sm:text-sm font-medium text-black dark:text-white"
+                >
+                  Preferred Contact Method
+                </label>
+                <select
+                  id="contact-method"
+                  className="bg-neutral-100 dark:bg-[#18181b] border border-neutral-300 dark:border-neutral-700 text-black dark:text-white text-sm sm:text-base h-10 sm:h-11 rounded-md px-3"
+                >
+                  <option value="email">Email</option>
+                  <option value="phone">Phone</option>
+                </select>
               </div>
               <div className="flex flex-col gap-2">
                 <label
@@ -238,6 +282,21 @@ export function ContactSection() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-4 flex justify-center w-full">
+          <div className="w-full max-w-xl p-4 bg-neutral-50 dark:bg-[#0f0f0f] rounded-lg border border-neutral-200 dark:border-neutral-800 text-center">
+            <p className="text-sm sm:text-base font-semibold text-black dark:text-white mb-2">
+              Want to talk to us right away?
+            </p>
+            <p className="text-sm text-black/70 dark:text-white/70">
+              Call us at{" "}
+              <span className="font-semibold text-black dark:text-white">
+                (555) 123-4567
+              </span>
+              , and let's discuss how we can help you succeed!
+            </p>
           </div>
         </div>
       </section>
