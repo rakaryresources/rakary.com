@@ -52,8 +52,12 @@ export function Navbar() {
           href="/"
           className="flex items-center space-x-2 text-sm px-2 py-1 text-black dark:text-white"
         >
-          <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm" />
-          <span className="font-medium">DeepFundz</span>
+          <img
+            src="/images/rakary.png"
+            alt="Logo"
+            className="h-10 w-10 object-contain mr-1"
+          />
+          <span className="font-medium">Rakary.com</span>
         </Link>
 
         {/* Desktop Menu */}
