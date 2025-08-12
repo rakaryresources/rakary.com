@@ -40,6 +40,7 @@ export function Navbar() {
     },
     { name: "Customers", href: "/customers" },
     { name: "Resources", href: "/resources" },
+    { name: "Book a Service", href: "/book-service" },
     { name: "Contact Us", href: "/contact" },
     { name: "FAQ", href: "/faq" },
   ];
@@ -92,7 +93,7 @@ export function Navbar() {
               <Link
                 key={idx}
                 href={item.href}
-                className="text-sm px-4 py-2 rounded-md text-black dark:text-white hover:bg-[#F5F5F5] dark:hover:bg-neutral-800 transition"
+                className="text-sm px-2 py-2 rounded-md text-black dark:text-white hover:bg-[#F5F5F5] dark:hover:bg-neutral-800 transition"
               >
                 {item.name}
               </Link>
@@ -104,7 +105,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center space-x-2">
           <ThemeToggle />
           <Link
-            href="/contact"
+            href="/book-service"
             className="text-sm px-4 py-2 rounded-full bg-neutral-900 hover:bg-black/90 text-white transition shadow-[0px_-1px_0px_0px_#FFFFFF40_inset,_0px_1px_0px_0px_#FFFFFF40_inset]"
           >
             Book Service
@@ -171,7 +172,7 @@ export function Navbar() {
         {/* Auth + Theme in Mobile */}
         <div className="pt-2 border-t border-black/10 dark:border-white/20 space-y-2">
           <Link
-            href="/contact"
+            href="/book-service"
             className="block py-1 text-black dark:text-white"
             onClick={() => setIsMobileMenuOpen(false)}
           >

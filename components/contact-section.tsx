@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/utils/supabaseClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface Testimonial {
   company: string;
@@ -14,9 +16,29 @@ interface Testimonial {
   gradient: string;
 }
 
+interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  preferred_contact_method: string;
+  message: string;
+}
+
 export function ContactSection() {
   // State for testimonial carousel
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  // State for form
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    phone: "",
+    preferred_contact_method: "email",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   // Sample testimonials data
   const testimonials: Testimonial[] = [
@@ -77,6 +99,76 @@ export function ContactSection() {
     );
   };
 
+  // Handle form input changes
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.from("contact_us").insert([
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || null,
+          preferred_contact_method: formData.preferred_contact_method,
+          message: formData.message,
+        },
+      ]);
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Success!",
+        description:
+          "Your message has been sent successfully. We'll get back to you soon!",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        preferred_contact_method: "email",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Error",
+        description:
+          "There was an error sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   // Ensure we always have valid data
   const currentData = testimonials[currentTestimonial] || testimonials[0];
   const [glowVisible, setGlowVisible] = useState(false);
@@ -127,18 +219,25 @@ export function ContactSection() {
                 back to you as soon as possible.
               </p>
             </div>
-            <form className="flex flex-col gap-4 sm:gap-5 md:gap-6">
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-4 sm:gap-5 md:gap-6"
+            >
               <div className="flex flex-col gap-2">
                 <label
                   htmlFor="name"
                   className="text-xs sm:text-sm font-medium text-black dark:text-white"
                 >
-                  Name
+                  Name *
                 </label>
                 <Input
                   id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   placeholder="e.g. John Smith"
                   className="bg-neutral-100 dark:bg-[#18181b] border border-neutral-300 dark:border-neutral-700 text-black dark:text-white placeholder:text-neutral-400 text-sm sm:text-base h-10 sm:h-11"
+                  required
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -146,13 +245,17 @@ export function ContactSection() {
                   htmlFor="email"
                   className="text-xs sm:text-sm font-medium text-black dark:text-white"
                 >
-                  Email address
+                  Email address *
                 </label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   placeholder="e.g. example@gmail.com"
                   className="bg-neutral-100 dark:bg-[#18181b] border border-neutral-300 dark:border-neutral-700 text-black dark:text-white placeholder:text-neutral-400 text-sm sm:text-base h-10 sm:h-11"
+                  required
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -164,20 +267,26 @@ export function ContactSection() {
                 </label>
                 <Input
                   id="phone"
+                  name="phone"
                   type="tel"
+                  value={formData.phone}
+                  onChange={handleInputChange}
                   placeholder="e.g. +1 (555) 123-4567"
                   className="bg-neutral-100 dark:bg-[#18181b] border border-neutral-300 dark:border-neutral-700 text-black dark:text-white placeholder:text-neutral-400 text-sm sm:text-base h-10 sm:h-11"
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <label
-                  htmlFor="contact-method"
+                  htmlFor="preferred_contact_method"
                   className="text-xs sm:text-sm font-medium text-black dark:text-white"
                 >
                   Preferred Contact Method
                 </label>
                 <select
-                  id="contact-method"
+                  id="preferred_contact_method"
+                  name="preferred_contact_method"
+                  value={formData.preferred_contact_method}
+                  onChange={handleInputChange}
                   className="bg-neutral-100 dark:bg-[#18181b] border border-neutral-300 dark:border-neutral-700 text-black dark:text-white text-sm sm:text-base h-10 sm:h-11 rounded-md px-3"
                 >
                   <option value="email">Email</option>
@@ -189,19 +298,24 @@ export function ContactSection() {
                   htmlFor="message"
                   className="text-xs sm:text-sm font-medium text-black dark:text-white"
                 >
-                  Message
+                  Message *
                 </label>
                 <Textarea
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   placeholder="Let us know how we can help"
                   className="bg-neutral-100 dark:bg-[#18181b] border border-neutral-300 dark:border-neutral-700 text-black dark:text-white placeholder:text-neutral-400 min-h-[80px] sm:min-h-[100px] text-sm sm:text-base"
+                  required
                 />
               </div>
               <Button
                 type="submit"
-                className="w-fit px-4 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-semibold shadow hover:bg-neutral-200 dark:hover:bg-neutral-800 transition text-xs sm:text-sm md:text-base"
+                disabled={isSubmitting}
+                className="w-fit px-4 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-semibold shadow hover:bg-neutral-200 dark:hover:bg-neutral-800 transition text-xs sm:text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send message
+                {isSubmitting ? "Sending..." : "Send message"}
               </Button>
             </form>
           </div>
